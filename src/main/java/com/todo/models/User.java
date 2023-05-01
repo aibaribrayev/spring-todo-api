@@ -1,6 +1,7 @@
-package com.todo.user;
+package com.todo.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.todo.models.Task;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -20,7 +21,7 @@ public class User {
     @JsonProperty("birth_date")
     private LocalDate birthDate;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Task> tasks;
 

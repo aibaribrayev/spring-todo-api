@@ -1,4 +1,4 @@
-package com.todo.user;
+package com.todo.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

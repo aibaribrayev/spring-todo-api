@@ -1,11 +1,10 @@
-package com.todo.user;
+package com.todo.controllers;
 
 import com.todo.jpa.TaskRepository;
 import com.todo.jpa.UserRepository;
-import jakarta.validation.Valid;
+import com.todo.models.Task;
+import com.todo.errors.TaskNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -15,7 +14,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class TaskJpaResource {

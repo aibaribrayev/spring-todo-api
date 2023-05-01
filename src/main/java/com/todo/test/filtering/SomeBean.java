@@ -1,4 +1,4 @@
-package com.todo.filtering;
+package com.todo.test.filtering;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

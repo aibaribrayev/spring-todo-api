@@ -1,4 +1,4 @@
-package com.todo.versioning;
+package com.todo.test.versioning;
 
 public class PersonV2 {
     private Name name;

@@ -1,4 +1,4 @@
-package com.todo.versioning;
+package com.todo.test.versioning;
 
 public class Name {
     private String firstName;

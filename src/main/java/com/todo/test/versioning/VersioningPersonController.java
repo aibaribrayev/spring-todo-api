@@ -1,4 +1,4 @@
-package com.todo.versioning;
+package com.todo.test.versioning;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

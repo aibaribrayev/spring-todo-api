@@ -1,7 +1,7 @@
 package com.todo.exception;
 import java.time.LocalDateTime;
 
-import com.todo.user.UserNotFoundException;
+import com.todo.errors.UserNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;

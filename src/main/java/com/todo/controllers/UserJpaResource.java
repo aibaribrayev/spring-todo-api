@@ -1,4 +1,4 @@
-package com.todo.user;
+package com.todo.controllers;
 
 import com.todo.jpa.TaskRepository;
 import com.todo.jpa.UserRepository;
@@ -10,6 +10,9 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import com.todo.models.Task;
+import com.todo.models.User;
+import com.todo.errors.UserNotFoundException;
 import jakarta.validation.Valid;
 
 import org.springframework.hateoas.EntityModel;
