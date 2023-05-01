@@ -16,20 +16,20 @@ public class User {
     @Size(min=2, message = "Name should have at least 2 characters")
     @JsonProperty("user_name")
     private String name;
-    @Past(message = "Birth Date should me in the past")
+    @Past(message = "Birth Date should be in the past")
     @JsonProperty("birth_date")
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private List<Todo> todos;
+    private List<Task> tasks;
 
-    public List<Todo> getTodos() {
-        return todos;
+    public List<Task> getTasks() {
+        return tasks;
     }
 
-    public void setTodos(List<Todo> todos) {
-        this.todos = todos;
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     protected User() {

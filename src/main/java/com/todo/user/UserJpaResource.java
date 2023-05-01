@@ -1,6 +1,6 @@
 package com.todo.user;
 
-import com.todo.jpa.TodoRepository;
+import com.todo.jpa.TaskRepository;
 import com.todo.jpa.UserRepository;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -15,23 +15,18 @@ import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 @RestController
 public class UserJpaResource {
     private UserRepository userRepository;
-    private TodoRepository todoRepository;
+    private TaskRepository taskRepository;
 
-    public UserJpaResource(UserRepository userRepository, TodoRepository todoRepository) {
+    public UserJpaResource(UserRepository userRepository, TaskRepository taskRepository) {
         this.userRepository = userRepository;
-        this.todoRepository = todoRepository;
+        this.taskRepository = taskRepository;
     }
 
     @GetMapping("/jpa/users")
@@ -73,30 +68,30 @@ public class UserJpaResource {
     }
 
 
-    @GetMapping("/jpa/users/{id}/todos")
-    public List<Todo> retrieveTodosForUser(@PathVariable int id) {
+    @GetMapping("/jpa/users/{id}/tasks")
+    public List<Task> retrieveTasksForUser(@PathVariable int id) {
         Optional<User> user = userRepository.findById(id);
 
         if(user.isEmpty())
             throw new UserNotFoundException("id:"+id);
 
-        return user.get().getTodos();
+        return user.get().getTasks();
     }
 
-    @PostMapping("/jpa/users/{id}/todos")
-    public ResponseEntity<Object> createTodoForUser(@PathVariable int id, @RequestBody Todo todo) {
+    @PostMapping("/jpa/users/{id}/tasks")
+    public ResponseEntity<Object> createTaskForUser(@PathVariable int id, @RequestBody Task task) {
         Optional<User> user = userRepository.findById(id);
 
         if(user.isEmpty())
             throw new UserNotFoundException("id:"+id);
 
-        todo.setUser(user.get());
+        task.setUser(user.get());
 
-        Todo savedTodo = todoRepository.save(todo);
+        Task savedTask = taskRepository.save(task);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(savedTodo.getId())
+                .buildAndExpand(savedTask.getId())
                 .toUri();
 
         return ResponseEntity.created(location).build();

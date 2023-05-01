@@ -12,7 +12,7 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
-public class Todo {
+public class Task {
     @Id
     @GeneratedValue
     private Integer id;
@@ -21,20 +21,22 @@ public class Todo {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
-
-
     private LocalDateTime dueDate;
-    private String status;
+    private String status = "Pending";
+    private boolean isCompleted = false;
+    private int ownerId;
 
-    public Todo(Integer id, String description, User user, LocalDateTime createdDate, LocalDateTime dueDate, String status) {
+    public Task(Integer id, String description, User user, LocalDateTime dueDate, boolean isCompleted) {
         this.id = id;
         this.description = description;
         this.user = user;
         this.dueDate = dueDate;
-        this.status = status;
+        this.isCompleted = isCompleted;
+        this.setStatus();
+        this.ownerId = user.getId();
     }
 
-    protected Todo() {}
+    protected Task() {}
 
     public Integer getId() {
         return id;
@@ -56,8 +58,13 @@ public class Todo {
         return user;
     }
 
+    public int getOwnerId() {
+        return ownerId;
+    }
+
     public void setUser(User user) {
         this.user = user;
+        this.ownerId = user.getId();
     }
 
     public LocalDateTime getDueDate() {
@@ -66,24 +73,48 @@ public class Todo {
 
     public void setDueDate(LocalDateTime dueDate) {
         this.dueDate = dueDate;
+        // check if the due date is in the future and the task is not completed
+        setStatus();
+    }
+
+    public boolean getCompleted() {
+        return isCompleted;
+    }
+
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
+        setStatus();
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public String setStatus() {
+        if (isCompleted) {
+            this.status = "Completed";
+        } else {
+            // check if the due date is in the past
+            LocalDateTime now = LocalDateTime.now();
+            if (dueDate != null && dueDate.isBefore(now)) {
+                this.status = "Timed out";
+            } else {
+                this.status = "Pending";
+            }
+        }
+        return status;
     }
+
 
     @Override
     public String toString() {
-        return "Todo{" +
+        return "Task{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", user=" + user +
                 ", dueDate=" + dueDate +
-                ", status=" + status +
+                ", status='" + status + '\'' +
+                ", ownerId=" + ownerId +
                 '}';
     }
 }
