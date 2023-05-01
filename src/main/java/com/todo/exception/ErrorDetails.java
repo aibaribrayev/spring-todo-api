@@ -1,4 +1,4 @@
-package com.social.media.api.exception;
+package com.todo.exception;
 import java.time.LocalDateTime;
 
 public class ErrorDetails {

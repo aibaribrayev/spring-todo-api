@@ -1,4 +1,4 @@
-package com.social.media.api.user;
+package com.todo.user;
 
 import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;

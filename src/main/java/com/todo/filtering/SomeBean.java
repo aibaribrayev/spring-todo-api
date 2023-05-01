@@ -1,4 +1,4 @@
-package com.social.media.api.filtering;
+package com.todo.filtering;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

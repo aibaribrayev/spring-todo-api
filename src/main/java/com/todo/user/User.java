@@ -1,4 +1,4 @@
-package com.social.media.api.user;
+package com.todo.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;

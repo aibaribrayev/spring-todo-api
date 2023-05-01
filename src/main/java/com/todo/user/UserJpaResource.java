@@ -1,7 +1,7 @@
-package com.social.media.api.user;
+package com.todo.user;
 
-import com.social.media.api.jpa.TodoRepository;
-import com.social.media.api.jpa.UserRepository;
+import com.todo.jpa.TodoRepository;
+import com.todo.jpa.UserRepository;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;

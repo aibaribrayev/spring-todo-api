@@ -1,4 +1,4 @@
-package com.social.media.api.versioning;
+package com.todo.versioning;
 
 public class Name {
     private String firstName;

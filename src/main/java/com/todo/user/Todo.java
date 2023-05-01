@@ -1,6 +1,5 @@
-package com.social.media.api.user;
+package com.todo.user;
 
-import com.social.media.api.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;

@@ -1,7 +1,7 @@
-package com.social.media.api.exception;
+package com.todo.exception;
 import java.time.LocalDateTime;
 
-import com.social.media.api.user.UserNotFoundException;
+import com.todo.user.UserNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
